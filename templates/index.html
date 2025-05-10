@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Data Analysis</title>
+</head>
+<body>
+    <h1>Sales Data Analysis</h1>
+    <h2>Upload your CSV file</h2>
+
+    <!-- Upload CSV form -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv">
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if plot_url %}
+        <h2>Generated Graph</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Sales Data Plot">
+    {% endif %}
+
+    {% if data %}
+        <h2>Sales Data Table</h2>
+        <div>{{ data|safe }}</div>
+    {% endif %}
+</body>
+</html>
